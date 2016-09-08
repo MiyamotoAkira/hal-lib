@@ -1,4 +1,4 @@
-(defproject haltest "0.1.0-SNAPSHOT"
+(defproject hal-lib "0.1.0-SNAPSHOT"
   :description "Set of functions used to add elements that follow the HAL spec
 for hypermedia."
   :url "http://example.com/FIXME"

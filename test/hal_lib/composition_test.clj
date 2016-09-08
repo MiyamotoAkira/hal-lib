@@ -1,6 +1,6 @@
-(ns haltest.core-test
+(ns hal-lib.composition-test
   (:require [clojure.test :refer :all]
-            [haltest.core :refer :all]))
+            [hal-lib.composition :refer :all]))
 
 (deftest with-link-to-self
   (testing "Check that we can add a link to self"
