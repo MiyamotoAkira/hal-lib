@@ -1,14 +1,25 @@
 # haltest
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure library designed to help with the creation of hal compliant json resources.
 
 ## Usage
 
-FIXME
+The following commands should be used:
+
+add-self-link
+
+add-next-link
+
+add-previous-link
+
+add-link
+
+add-embedded
+
+add-curie
 
 ## License
 
-Copyright © 2016 FIXME
+Copyright © 2016 Jorge Gueorguiev Garcia
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+MIT License. Please see LICENSE
