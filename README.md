@@ -1,4 +1,4 @@
-# haltest
+# hal-lib
 
 A Clojure library designed to help with the creation of hal compliant json resources.
 
@@ -22,4 +22,4 @@ add-curie
 
 Copyright © 2016 Jorge Gueorguiev Garcia
 
-MIT License. Please see LICENSE
+MIT License. Please see the LICENSE file.

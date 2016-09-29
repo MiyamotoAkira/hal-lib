@@ -32,9 +32,29 @@
     (conj structure {:_links {}})
     structure))
 
+(defn confirm-embedded-root
+  [structure]
+  (if (not (contains? structure :_embedded))
+    (conj structure {:_embedded {}})
+    structure))
+
+(defn confirm-curie-root
+  [structure]
+  (if (not (contains? (structure :_links) :curies))
+    (update-in structure [:_links] conj {:curies []})
+    structure))
+
 (defn add-link-to-root
   [structure link]
   (update-in structure [:_links] conj link))
+
+(defn add-embedded-to-root
+  [structure embedded-data]
+  (update-in structure [:_embedded] conj embedded-data))
+
+(defn add-curie-to-root
+  [structure curie-data]
+  (update-in structure [:_links :curies] conj curie-data))
 
 (defn add-link
   [link-name link-information structure]
@@ -63,7 +83,24 @@
   [link-name collection])
 
 (defn add-embedded
-  [embedded-data structure])
+  [embedded-data structure]
+  (-> structure
+      (confirm-embedded-root)
+      (add-embedded-to-root embedded-data)))
+
+(defn add-single-curie
+  [curie-data structure]
+  (-> structure
+      (confirm-link-root)
+      (confirm-curie-root)
+      (add-curie-to-root curie-data)))
 
 (defn add-curie
-  [curie-data structure])
+  [curie-data structure]
+  (if (or (vector? curie-data) (seq? curie-data))
+    (loop [[curie & rest] curie-data
+           structure' (add-single-curie curie structure)]
+      (if (empty? rest)
+        structure'
+        (recur rest (add-single-curie (first rest) structure'))))
+    (add-single-curie curie-data structure)) )
